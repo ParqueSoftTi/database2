@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-04-15T23:04:48-05:00",
+  "id": "database2-markdown",
+  "duration": 0,
+  "title": "Base de datos 2",
+  "summary": "Curso de Base de datos 2",
+  "source": ".\\codelabs.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "basededatos",
+    "mongo",
+    "nosql"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/Mrc0113/codelab-4-codelab",
+  "url": "database2-markdown"
+}
