@@ -28,7 +28,7 @@
                   environment="web"
                   feedback-link="https://github.com/Mrc0113/codelab-4-codelab">
     
-      <google-codelab-step label="Instalacion de mongoDb Instrucciones" duration="0">
+      <google-codelab-step label="Instalación de mongoDb" duration="0">
         <ol type="1">
 <li><strong>Descargar el Instalador de MongoDB</strong><ul>
 <li>Ve al sitio web oficial de MongoDB en <a href="https://www.mongodb.com/" target="_blank">mongodb.com</a>.</li>
@@ -63,6 +63,74 @@
 </ol>
 </li>
 </ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Realizar funciones basicas (CRUD) Nosql" duration="0">
+        <p>En este paso te mostramos como hacer las diferentes operaciones basicas para ejecutar en no sql.</p>
+<pre><code># Insertar un documento en la colección &#39;users&#39;
+db.users.insert_one({&#34;name&#34;: &#34;John&#34;, &#34;age&#34;: 30, &#34;city&#34;: &#34;New York&#34;})
+</code></pre>
+<p>Crear datos (Create):</p>
+<pre><code># Obtener todos los documentos de la colección &#39;users&#39;
+cursor = db.users.find()
+
+</code></pre>
+<p>Leer datos (Read):</p>
+<pre><code># Iterar sobre los documentos y mostrarlos
+for document in cursor:
+    print(document)
+
+</code></pre>
+<p>Actualizar datos (Update):</p>
+<pre><code># Actualizar un documento en la colección &#39;users&#39;
+db.users.update_one({&#34;name&#34;: &#34;John&#34;}, {&#34;$set&#34;: {&#34;age&#34;: 35}})
+
+</code></pre>
+<p>Borrar datos (Delete):</p>
+<pre><code># Borrar un documento de la colección &#39;users&#39;
+db.users.delete_one({&#34;name&#34;: &#34;John&#34;})
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Realizar funciones Avanzadas (CRUD) Nosql" duration="0">
+        <p>Agregación (Aggregation): Permite realizar operaciones de agregación como suma, promedio, conteo, etc. python</p>
+<pre><code># Realizar una operación de agregación para obtener el promedio de la edad de los usuarios
+pipeline = [
+    {&#34;$group&#34;: {&#34;_id&#34;: None, &#34;average_age&#34;: {&#34;$avg&#34;: &#34;$age&#34;}}}
+]
+
+result = list(db.users.aggregate(pipeline))
+print(result)
+</code></pre>
+<p>Proyección (Projection): Permite seleccionar solo los campos necesarios en el resultado de una consulta.</p>
+<pre><code># Proyectar solo los nombres y las edades de los usuarios
+projection = {&#34;name&#34;: 1, &#34;age&#34;: 1, &#34;_id&#34;: 0}
+cursor = db.users.find({}, projection)
+
+for document in cursor:
+    print(document)
+</code></pre>
+<p>Ordenamiento (Sorting): Permite ordenar los resultados de una consulta en base a uno o más campos.</p>
+<pre><code># Ordenar los usuarios por edad de forma descendente
+cursor = db.users.find().sort(&#34;age&#34;, -1)
+
+for document in cursor:
+    print(document)
+</code></pre>
+<p>Agrupamiento (Grouping): Permite agrupar documentos por un campo específico y realizar operaciones de agregación en cada grupo.</p>
+<pre><code># Agrupar usuarios por ciudad y calcular la cantidad de usuarios en cada ciudad
+pipeline = [
+    {&#34;$group&#34;: {&#34;_id&#34;: &#34;$city&#34;, &#34;count&#34;: {&#34;$sum&#34;: 1}}}
+]
+
+result = list(db.users.aggregate(pipeline))
+print(result)
+</code></pre>
 
 
       </google-codelab-step>
